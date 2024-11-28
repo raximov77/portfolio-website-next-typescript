@@ -4,8 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
-    appDir: true, // Enable experimental features if necessary
+    appDir: true,
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
