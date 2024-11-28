@@ -31,13 +31,14 @@ const Header = () => {
         setRegisterEmail((e.target as HTMLFormElement).email.value)
           const data = {
             email:(e.target as HTMLFormElement).email.value, 
-            firstName:(e.target as HTMLFormElement).username?.value, 
-            lastName:(e.target as HTMLFormElement).username?.value, 
+            firstName:(e.target as HTMLFormElement).username.value, 
+            lastName:(e.target as HTMLFormElement).username.value, 
             password:(e.target as HTMLFormElement).password.value    
           } 
           useAxios().post('/register', data).then(res => {
             setIsLogin("verifyRegister")
-          })   
+          })  
+          console.log(data);
       }
       else if(isLogin == "verifyRegister"){
         const data = {
@@ -54,7 +55,9 @@ const Header = () => {
 
   return (
     <header className='py-[20px] w-[1200px] mx-auto flex items-center justify-between border-b border-[#46A35880]/50'>
-        <Image style={{width:"150px", height:"34px"}} priority src={"/Logo.svg"} alt='Site Logo' width={150} height={34}/>
+        <Link href={"/"}>
+          <Image style={{width:"150px", height:"34px"}} priority src={"/Logo.svg"} alt='Site Logo' width={150} height={34}/>
+        </Link>
         {/* <nav className='flex items-center gap-[50px]'>
             <Link className={`font-semibold text-[22px] ${path == "/" ? "text-red-500" : ""}`} href={"/"}>Home</Link>
             <Link className={`font-semibold text-[22px] ${path == "/shop" ? "text-red-500" : ""}`} href={"/shop"}>Shop</Link>
@@ -65,37 +68,43 @@ const Header = () => {
             {["/", "/shop", "/plant-care", "/blogs"].map((link, index) => (
               <Link
                 key={index}
-                className={`font-semibold text-[22px] relative ${
+                className={`font-bold text-[16px] leading-[20px] relative ${
                   path === link ? "" : "opacity-70"
                 }`}
                 href={link}
               >
                 {["Home", "Shop", "Plant Care", "Blogs"][index]}
                 <span
-                  className={`absolute bottom-[-23px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${
+                  className={`absolute bottom-[-29px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${
                     path === link ? "scale-x-100" : "hover:scale-x-100"
                   }`}
                 ></span>
               </Link>
             ))}
         </nav>
-        <div className='flex items-center cursor-pointer gap-[30px]'>
-          <SearchIcon/>
-          <BasketIcon/>
+        <div className='flex gap-[30px]'>
+          <div className='flex items-center gap-[30px]'>
+            <div className='cursor-pointer'>
+              <SearchIcon/>
+            </div>
+            <div className='cursor-pointer'>
+              <BasketIcon/>
+            </div>
+          </div>
+          <Button leftIcon={<LoginIcon/>} extraClass='w-[100px] gap-[4px]' onClick={() => setLoginModal(true)} type='button' title='Login'/>
+          <Modal openModal={loginModal} setOpenModal={setLoginModal} modalStyle=''>
+            <ul className='flex items-center justify-center gap-[10px] cursor-pointer font-semibold text-[22px]'>
+                <li className={`${isLogin == "login" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("login")}>Login</li>
+                <li className={`${isLogin == "register" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("register")}>Register</li>
+            </ul>
+            <form onSubmit={handleSubmitLogin} className='w-[300px] mx-auto mt-[53px] space-y-5' autoComplete='off'>
+                {isLogin == "login" && <LoginInputs/>}
+                {isLogin == "register" && <RegisterInputs/>}
+                {isLogin == "verifyRegister" && <VerifyRegister setRegisterVerifyValue={setRegisterVerifyValue}/>}
+                <Button extraClass='w-full' title='Login' type='submit' onClick={() => {}}/>
+            </form>
+          </Modal>
         </div>
-        <Button leftIcon={<LoginIcon/>} extraClass='w-[100px] gap-[4px]' onClick={() => setLoginModal(true)} type='button' title='Login'/>
-        <Modal openModal={loginModal} setOpenModal={setLoginModal} modalStyle=''>
-          <ul className='flex items-center justify-center gap-[10px] cursor-pointer font-semibold text-[22px]'>
-              <li className={`${isLogin == "login" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("login")}>Login</li>
-              <li className={`${isLogin == "register" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("register")}>Register</li>
-          </ul>
-          <form onSubmit={handleSubmitLogin} className='w-[300px] mx-auto mt-[53px] space-y-5' autoComplete='off'>
-              {isLogin == "login" && <LoginInputs/>}
-              {isLogin == "register" && <RegisterInputs/>}
-              {isLogin == "verifyRegister" && <VerifyRegister setRegisterVerifyValue={setRegisterVerifyValue}/>}
-              <Button extraClass='w-full' title='Login' type='submit' onClick={() => {}}/>
-          </form>
-        </Modal>
     </header>
   )
 }

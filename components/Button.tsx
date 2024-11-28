@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react'
 
-interface ButtonType {
+export interface ButtonType {
     title:string,
     type: "button" | "submit" | "reset",
-    onClick:() => void,
+    onClick?:() => void,
     extraClass?:string,  
     leftIcon?:ReactNode,
     rightIcon?:ReactNode,
