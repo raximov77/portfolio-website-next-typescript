@@ -41,12 +41,13 @@ const page:React.FC<ButtonType> = ({title, type,extraClass}) => {
             <Image className='cursor-pointer' src={"/images/img-hero.png"} alt='Img' width={518} height={518}/>
         </div>
       </div>
-      <div className='flex justify-between w-[1200px] mx-auto'>
-          <div className='w-[25%]'>
+      <div className='flex justify-between w-[1200px] gap-[50px] mx-auto mt-[46px] '>
+          <div className='w-[25%]  px-[18px] py-[16px] bg-[#FBFBFB]'>
+            <h2 className='text-[25px] font-bold leading-[16px] text-[#3D3D3D] mb-[18px]'>Categories</h2>
               <Categories />
           </div>
           <div className='w-[75%]'>
-              <ul className='flex items-center space-x-[37px]'>{tags.map((item:TagTypes, index:number) => <li onClick={() => setTags(item.path)} className='cursor-pointer' key={index}>{item.tagName}</li> )}</ul>
+              <ul className='flex items-center space-x-[37px]'>{tags.map((item:TagTypes, index:number) => <li onClick={() => setTags(item.path)} className='text-[17px] text-[#3D3D3D] mb-[38px] font-normal leading-[16px] cursor-pointer' key={index}>{item.tagName}</li> )}</ul>
               <Product />
           </div>
       </div>

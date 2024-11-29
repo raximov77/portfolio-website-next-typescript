@@ -46,7 +46,6 @@ const Categories = () => {
     <div className='space-y-5'>
         {categories.map((item:CategoryType) => <p onClick={() => setCategory(item.category_name)} style={{fontWeight: 'bold',fontSize: '20px',color: '#3D3D3D',lineHeight: '40px', cursor:'pointer'}} key={item.category_id}>{item.category_name}</p> )}
         <InputRange
-            step={5}
             value={rangeValue}
             maxValue={1000}
             minValue={1}
