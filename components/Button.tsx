@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 
 export interface ButtonType {
-    title:string,
-    type: "button" | "submit" | "reset",
+    title?:string,
+    type?: "button" | "submit" | "reset",
     onClick?:() => void,
     extraClass?:string,  
     leftIcon?:ReactNode,
