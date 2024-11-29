@@ -11,11 +11,13 @@ import LoginInputs from './LoginInputs'
 import RegisterInputs from './RegisterInputs'
 import { useAxios } from '@/hook/useAxios'
 import VerifyRegister from './VerifyRegister'
+import ForgotPassword from './ForgotPassword'
+import NewPassword from './NewPassword'
 
 const Header = () => {
     const path = usePathname()
     const [loginModal, setLoginModal] = useState<boolean>(false)
-    const [isLogin, setIsLogin] = useState<"login" | "register" | "verifyRegister">("login")
+    const [isLogin, setIsLogin] = useState<"login" | "register" | "verifyRegister" | "forgotPassword" | "newPassword">("login")
     const [registerVerifyValue, setRegisterVerifyValue] = useState<string>("")
     const [registerEmail, setRegisterEmail] = useState<string>("")
 
@@ -25,7 +27,11 @@ const Header = () => {
           const data = {
             usernameoremail:(e.target as HTMLFormElement).email.value, 
             password:(e.target as HTMLFormElement).password.value    
-          }       
+          } 
+          useAxios().post("/login", data).then(res => {
+            setLoginModal(false)
+            localStorage.setItem("user", JSON.stringify(res.data))
+          })      
       }
       else if(isLogin == "register"){
         setRegisterEmail((e.target as HTMLFormElement).email.value)
@@ -38,7 +44,6 @@ const Header = () => {
           useAxios().post('/register', data).then(res => {
             setIsLogin("verifyRegister")
           })  
-          console.log(data);
       }
       else if(isLogin == "verifyRegister"){
         const data = {
@@ -51,6 +56,22 @@ const Header = () => {
           setIsLogin("login")
         })     
       }
+      else if(isLogin == "forgotPassword"){
+        setRegisterEmail((e.target as HTMLFormElement).email.value)
+        useAxios().post(`/forgot/${(e.target as HTMLFormElement).email.value}`, {}).then(res => {
+          setIsLogin("newPassword")   
+        })     
+      }
+      else if(isLogin == "newPassword"){
+        const data = {
+          email:registerEmail, 
+          new_password:(e.target as HTMLFormElement).newPassword.value,
+          otp:(e.target as HTMLFormElement).otp.value
+        } 
+        useAxios().put("/reset-password", data).then(res => {
+          setIsLogin("login")
+        })      
+    }
     }
 
   return (
@@ -98,9 +119,11 @@ const Header = () => {
                 <li className={`${isLogin == "register" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("register")}>Register</li>
             </ul>
             <form onSubmit={handleSubmitLogin} className='w-[300px] mx-auto mt-[53px] space-y-5' autoComplete='off'>
-                {isLogin == "login" && <LoginInputs/>}
+                {isLogin == "login" && <LoginInputs setIsLogin={setIsLogin}/>}
                 {isLogin == "register" && <RegisterInputs/>}
                 {isLogin == "verifyRegister" && <VerifyRegister setRegisterVerifyValue={setRegisterVerifyValue}/>}
+                {isLogin == "forgotPassword" && <ForgotPassword/>}
+                {isLogin == "newPassword" && <NewPassword/>}
                 <Button extraClass='w-full' title='Login' type='submit' onClick={() => {}}/>
             </form>
           </Modal>
