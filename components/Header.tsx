@@ -2,20 +2,24 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from './Button'
-import { BasketIcon, LoginIcon, SearchIcon } from '@/public/images/icon'
+import { BasketCount, LoginIcon, SearchIcon } from '@/public/images/icon'
 import Modal from './Modal'
-import Input from './Input'
 import LoginInputs from './LoginInputs'
 import RegisterInputs from './RegisterInputs'
 import { useAxios } from '@/hook/useAxios'
 import VerifyRegister from './VerifyRegister'
 import ForgotPassword from './ForgotPassword'
 import NewPassword from './NewPassword'
+import { Context, ContextType } from '@/context/Context'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 const Header = () => {
     const path = usePathname()
+    const queryClient = useQueryClient()
+
+    const {setToken, token}:ContextType = useContext(Context)
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [isLogin, setIsLogin] = useState<"login" | "register" | "verifyRegister" | "forgotPassword" | "newPassword">("login")
     const [registerVerifyValue, setRegisterVerifyValue] = useState<string>("")
@@ -29,8 +33,9 @@ const Header = () => {
             password:(e.target as HTMLFormElement).password.value    
           } 
           useAxios().post("/login", data).then(res => {
+            setToken(res.data)
             setLoginModal(false)
-            localStorage.setItem("user", JSON.stringify(res.data))
+            queryClient.invalidateQueries({queryKey:['products']})
           })      
       }
       else if(isLogin == "register"){
@@ -50,6 +55,7 @@ const Header = () => {
           email:registerEmail,
           code:registerVerifyValue
         }
+        
         useAxios().post('/users/verify', {}, {
           params:data
         }).then(res => {
@@ -74,43 +80,52 @@ const Header = () => {
     }
     }
 
+    // const {data:basketProducts = []} = useQuery({
+    //   queryKey:['basketProducts'],
+    //   queryFn:() => useAxios().get("/basket", {
+    //     headers:token ? {"Authorization": `Bearer ${token.access_token}`} : {},
+    //     params:{page:1, limit:100}
+    //   }).then(res => res.data)
+    // })
+    // console.log(basketProducts);
+    
+
   return (
     <header className='py-[20px] w-[1200px] mx-auto flex items-center justify-between border-b border-[#46A35880]/50'>
         <Link href={"/"}>
           <Image style={{width:"150px", height:"34px"}} priority src={"/Logo.svg"} alt='Site Logo' width={150} height={34}/>
         </Link>
-        {/* <nav className='flex items-center gap-[50px]'>
-            <Link className={`font-semibold text-[22px] ${path == "/" ? "text-red-500" : ""}`} href={"/"}>Home</Link>
-            <Link className={`font-semibold text-[22px] ${path == "/shop" ? "text-red-500" : ""}`} href={"/shop"}>Shop</Link>
-            <Link className={`font-semibold text-[22px] ${path == "/plant-care" ? "text-red-500" : ""}`} href={"/plant-care"}>Plant Care</Link>
-            <Link className={`font-semibold text-[22px] ${path == "/blogs" ? "text-red-500" : ""}`} href={"/blogs"}>Blogs</Link>
-        </nav> */}
           <nav className="flex items-center gap-[50px]">
-            {["/", "/shop", "/plant-care", "/blogs"].map((link, index) => (
-              <Link
-                key={index}
-                className={`font-bold text-[16px] leading-[20px] relative ${
-                  path === link ? "" : "opacity-70"
-                }`}
-                href={link}
-              >
-                {["Home", "Shop", "Plant Care", "Blogs"][index]}
-                <span
-                  className={`absolute bottom-[-29px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${
-                    path === link ? "scale-x-100" : "hover:scale-x-100"
-                  }`}
-                ></span>
-              </Link>
-            ))}
-        </nav>
+            <Link className={`font-bold text-[16px] leading-[20px] relative ${path === "/" ? "" : "opacity-70"}`} href="/">
+              Home
+              <span className={`absolute bottom-[-29px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${ path === "/" ? "scale-x-100" : "hover:scale-x-100"}`}>
+              </span>
+            </Link>
+            <Link className={`font-bold text-[16px] leading-[20px] relative ${path.startsWith("/shop") ? "" : "opacity-70"}`} href="/shop">
+              Shop
+              <span className={`absolute bottom-[-29px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${path.startsWith("/shop") ? "scale-x-100" : "hover:scale-x-100"}`}>
+              </span>
+          </Link>
+            <Link className={`font-bold text-[16px] leading-[20px] relative ${path === "/plant-care" ? "" : "opacity-70"}`}href="/plant-care">
+              Plant Care
+              <span className={`absolute bottom-[-29px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${ path === "/plant-care" ? "scale-x-100" : "hover:scale-x-100"}`}>
+              </span>
+            </Link>
+            <Link className={`font-bold text-[16px] leading-[20px] relative ${path === "/blogs" ? "" : "opacity-70"}`}href="/blogs">
+              Blogs
+              <span className={`absolute bottom-[-29px] left-0 w-full h-[2px] bg-[#46A358] scale-x-0 transform transition-transform duration-300 ease-out ${ path === "/blogs" ? "scale-x-100" : "hover:scale-x-100"}`}>
+              </span>
+            </Link>
+          </nav>
         <div className='flex gap-[30px]'>
           <div className='flex items-center gap-[30px]'>
-            <div className='cursor-pointer'>
+            <div>
               <SearchIcon/>
             </div>
-            <div className='cursor-pointer'>
-              <BasketIcon/>
-            </div>
+            <button className='flex items-center space-x-2 bg-[#46A358] text-white p-2 rounded-md'>
+              {/* {basketProducts.length > 0 ? basketProducts.length : ""} */}
+              <BasketCount/>
+            </button>
           </div>
           <Button leftIcon={<LoginIcon/>} extraClass='w-[100px] gap-[4px]' onClick={() => setLoginModal(true)} type='button' title='Login'/>
           <Modal openModal={loginModal} setOpenModal={setLoginModal} modalStyle=''>

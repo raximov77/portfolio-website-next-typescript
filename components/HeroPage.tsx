@@ -76,7 +76,7 @@ const HeroPage: React.FC = () => {
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#46A358] text-white p-3 rounded-full hover:bg-[#46A358] transition-colors duration-300">
-        <span>></span>
+        <span></span>
       </button>
       
       <div className="absolute bottom-4 flex justify-center w-full space-x-2">
@@ -84,9 +84,7 @@ const HeroPage: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full ${
-              currentSlide === index ? 'bg-[#46A358]' : 'bg-gray-300'
-            }`}>
+            className={`w-3 h-3 rounded-full ${currentSlide === index ? 'bg-[#46A358]' : 'bg-gray-300'}`}>
            </button>))}
       </div>
     </div>

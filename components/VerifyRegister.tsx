@@ -9,14 +9,11 @@ type VerifyRegisterType = {
 }
 
 const VerifyRegister:React.FC<VerifyRegisterType> = ({setRegisterVerifyValue}) => {
-    const [value, setValue] = useState<string>("")
     const onChange: OTPProps['onChange'] = (text) => {
-        setValue(text)
+      setRegisterVerifyValue(text)
     }
     const sharedProps: OTPProps = {onChange};
 
-    console.log(value);
-    
   return (
     <div className='text-center'>
         <Input.OTP size='large' formatter={(str) => str} {...sharedProps} />

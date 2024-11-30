@@ -21,10 +21,13 @@ export interface ProductType {
 }
 
 const Product = () => {
+    const {token}:any = useContext(Context)
     const {category, tags, minPrice, maxPrice} = useContext(Context)
+
     const {data:products = [], isLoading} = useQuery({
         queryKey:['products', category, tags, minPrice, maxPrice],
         queryFn:() => useAxios().get("/products", {
+            headers:token ? {"Authorization": `Bearer ${token ? token.access_token : null}`} : {},
             params:{
                 page:1, 
                 limit:100,
@@ -34,7 +37,8 @@ const Product = () => {
                 max_price:maxPrice,
                 min_price:minPrice
             }
-        }).then(res => res.data.products ? res.data.products : [])
+        }).then(res => res.data.products ? res.data.products : []),
+        enabled:true
     })
     
   return (
