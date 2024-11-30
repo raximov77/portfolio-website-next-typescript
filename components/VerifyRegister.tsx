@@ -1,6 +1,6 @@
 "use client"
 import { GetProps, Input } from 'antd'
-import React, { SetStateAction, useState } from 'react'
+import React, { SetStateAction } from 'react'
 
 type OTPProps = GetProps<typeof Input.OTP>;
 

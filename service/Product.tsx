@@ -42,7 +42,7 @@ const Product = () => {
     })
     
   return (
-    <div style={{display:"flex", flexWrap:"wrap", justifyContent:"space-between"}}>
+    <div style={{display:"flex", flexWrap:"wrap", justifyContent:"space-between" , gap:"55px"}}>
         {isLoading ? "Loading..." : products.map((item:ProductType) => <ProductCard key={item.product_id} item={item}/>)}
     </div>
   )

@@ -41,7 +41,7 @@ const HeroPage: React.FC = () => {
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
         {slides.map((slide, index) => (
           <div key={index} className="flex-shrink-0 w-full flex items-center justify-between p-6">
-            <div className="w-[557px] pt-[68px] pl-[43px]">
+            <div className="w-[557px] pl-[43px]">
               <p className="text-[14px] font-medium leading-[16px]">
                 WELCOME TO GREENSHOP
               </p>

@@ -91,7 +91,8 @@ const Header = () => {
     
 
   return (
-    <header className='py-[20px] w-[1200px] mx-auto flex items-center justify-between border-b border-[#46A35880]/50'>
+    <header className='sticky top-0 left-0 w-full bg-white py-[20px] flex items-center justify-center border-b border-[#46A35880]/50 z-50'>
+      <div className='w-[1200px] mx-auto flex items-center justify-between'>
         <Link href={"/"}>
           <Image style={{width:"150px", height:"34px"}} priority src={"/Logo.svg"} alt='Site Logo' width={150} height={34}/>
         </Link>
@@ -131,6 +132,7 @@ const Header = () => {
           <Modal openModal={loginModal} setOpenModal={setLoginModal} modalStyle=''>
             <ul className='flex items-center justify-center gap-[10px] cursor-pointer font-semibold text-[22px]'>
                 <li className={`${isLogin == "login" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("login")}>Login</li>
+                <span className='text-[18px] text-[#3D3D3D]/80'>|</span>
                 <li className={`${isLogin == "register" ? "text-[#46A358]" : ""}`} onClick={() => setIsLogin("register")}>Register</li>
             </ul>
             <form onSubmit={handleSubmitLogin} className='w-[300px] mx-auto mt-[53px] space-y-5' autoComplete='off'>
@@ -139,10 +141,19 @@ const Header = () => {
                 {isLogin == "verifyRegister" && <VerifyRegister setRegisterVerifyValue={setRegisterVerifyValue}/>}
                 {isLogin == "forgotPassword" && <ForgotPassword/>}
                 {isLogin == "newPassword" && <NewPassword/>}
-                <Button extraClass='w-full' title='Login' type='submit' onClick={() => {}}/>
+                <Button extraClass='w-full' 
+                title={
+                  isLogin === "login" ? "Login" :
+                  isLogin === "register" ? "Register" :
+                  isLogin === "verifyRegister" ? "Verify Registration" :
+                  isLogin === "forgotPassword" ? "Forgot Password" :
+                  isLogin === "newPassword" ? "Set New Password" : "Login"
+                }
+                type='submit' onClick={() => {}}/>
             </form>
           </Modal>
         </div>
+      </div>
     </header>
   )
 }

@@ -1,6 +1,6 @@
 import { Context } from '@/context/Context'
 import { useAxios } from '@/hook/useAxios'
-import { BasketCount, LikeIcon } from '@/public/images/icon'
+import { BasketCount, LikeIcon, SearchIcon } from '@/public/images/icon'
 import { ProductType } from '@/service/Product'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
@@ -52,13 +52,17 @@ const ProductCard:React.FC<{item:ProductType}> = ({item}) => {
 
   return (
     <div className='w-[250px]'>
-        <Image onClick={() => router.push(`/shop/${item.product_id}`)} src={item.image_url ? item.image_url[0] : "/Logo.svg"} priority style={{width:"250px", height:"250px", /* backgroundColor:"#F5F5F5" */}} alt={item.product_name} width={250} height={250}/>
-        <h2 className='text-[16px] font-normal leading-[16px] mt-[31px]'>{item.product_name}</h2>
-        <p className='text-[18px] font-bold leading-[16px] text-[#46A358] mt-[6px]'>${item.cost}.00</p>
-        <div className='flex items-center space-x-5'>
+        <div className='relative group'>
+          <Image onClick={() => router.push(`/shop/${item.product_id}`)} src={item.image_url ? item.image_url[0] : "/Logo.svg"} priority style={{width:"250px", height:"250px", cursor:'pointer'}} title='Click to enter details'  alt={item.product_name} width={250} height={250}/>
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#46A358] opacity-0 group-hover:opacity-100  duration-300" />
+        </div>
+        <div className='flex items-center justify-center space-x-5 mt-[10px] mb-[20px]'>
           <button onClick={() => mutation.mutate()} className={item.liked ? "text-red-500" : ""}><LikeIcon/></button>
           <button onClick={() => basketMutation.mutate()} className={item.basket ? "text-green-500" : ""}><BasketCount/></button>
+          <SearchIcon/>
         </div>
+        <h2 className='text-[16px] font-normal leading-[16px]'>{item.product_name}</h2>
+        <p className='text-[18px] font-bold leading-[16px] text-[#46A358] mt-[6px]'>${item.cost}.00</p>
     </div>
   )
 }

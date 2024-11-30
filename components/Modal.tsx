@@ -10,8 +10,8 @@ interface ModalType {
 
 const Modal:React.FC<ModalType> = ({children, openModal, setOpenModal, modalStyle}) => {
   return (
-    <div onClick={(e:React.MouseEvent<HTMLDivElement, MouseEvent>) => (e.target as HTMLDivElement).id == "wrapper" && setOpenModal(false)} id='wrapper' className={`fixed flex items-center justify-center duration-300 inset-0 bg-[#000]/30 ${!openModal && "scale-0"}`}>
-        <div className={`${modalStyle} bg-white w-[578px] pt-[62px] relative pb-[50px]`}>
+    <div onClick={(e:React.MouseEvent<HTMLDivElement, MouseEvent>) => (e.target as HTMLDivElement).id == "wrapper" && setOpenModal(false)} id='wrapper' className={`fixed flex items-center justify-center duration-300 inset-0 bg-[#000]/30 ${!openModal && "scale-0"}  z-50`}>
+        <div className={`${modalStyle} bg-white w-[578px] pt-[62px] relative pb-[50px] rounded-md`}>
           <button className='absolute top-[17px] right-[14px]' onClick={() => setOpenModal(false)}><CLoseIcon/></button>
           {children}
         </div>
