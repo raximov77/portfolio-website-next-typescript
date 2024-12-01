@@ -1,6 +1,8 @@
 "use client"
 import Button, { ButtonType } from '@/components/Button'
+import Footer from '@/components/Footer'
 import HeroPage from '@/components/HeroPage'
+import OurBlog from '@/components/OurBlog'
 import { Context } from '@/context/Context'
 import Categories from '@/service/Categories'
 import Product from '@/service/Product'
@@ -29,11 +31,11 @@ const page:React.FC<ButtonType> = () => {
   ];
 
   return (
-    <>
-      <div className='flex items-center justify-between bg-[#F5F5F5] w-[1200px] mx-auto mt-[12px]'>
+    <div className='w-[1200px] mx-auto '>
+      <div className='flex items-center justify-between bg-[#F5F5F5] mt-[12px]'>
         <HeroPage/>
       </div>
-      <div className='flex justify-between w-[1200px] gap-[50px] mx-auto mt-[46px]'>
+      <div className='flex justify-between gap-[50px] mt-[46px]'>
           <div className='w-[25%]  px-[18px] py-[16px] bg-[#FBFBFB]'>
             <h2 className='text-[23px] font-bold leading-[16px] text-[#3D3D3D] mb-[18px]'>Categories</h2>
               <div className='pl-3'>
@@ -45,7 +47,9 @@ const page:React.FC<ButtonType> = () => {
               <Product />
           </div>
       </div>
-    </>
+      <OurBlog/>
+      <Footer/>
+    </div>
   )
 }
 
