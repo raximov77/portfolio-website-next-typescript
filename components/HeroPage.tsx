@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
+import { ArrowDownOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const slides = [
   {
@@ -75,8 +76,8 @@ const HeroPage: React.FC = () => {
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#46A358] text-white p-3 rounded-full hover:bg-[#46A358] transition-colors duration-300">
-        <span></span>
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#46A358] text-white p-2 rounded-full hover:bg-[#46A358]/70 transition-colors duration-300">
+        <span ><ArrowRightOutlined/></span>
       </button>
       
       <div className="absolute bottom-4 flex justify-center w-full space-x-2">
