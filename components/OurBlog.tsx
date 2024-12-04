@@ -35,7 +35,7 @@ const OurBlog = () => {
         <p className='text-[14px] text-[#727272] leading-[24px] font-normal text-center mb-[35px]'>We are an online plant shop offering a wide range of cheap and trendy plants. </p>
         <div className='flex gap-[44px]'> 
             <div className='w-[268px]'>
-                <Image className='cursor-pointer' src={CactusImg} alt='Img' width={268} height={195}/>
+                <Image priority className='cursor-pointer' src={CactusImg} alt='Img' width={268} height={195}/>
                 <div className='bg-[#FBFBFB] pt-[9px] pr-[11px] pl-[15px] pb-[12px]'>
                     <p className='text-[14px] text-[#46A358] leading-[16px] font-medium'>September 12  | Read in 6 minutes</p>
                     <h4 className='text-[20px] text-[#3D3D3D] leading-[26px] font-bold my-[4px]'>Cactus & Succulent Care Tips</h4>

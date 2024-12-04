@@ -62,7 +62,10 @@ const ProductCard:React.FC<{item:ProductType}> = ({item}) => {
           <SearchIcon/>
         </div>
         <h2 className='text-[16px] font-normal leading-[16px]'>{item.product_name}</h2>
-        <p className='text-[18px] font-bold leading-[16px] text-[#46A358] mt-[6px]'>${item.cost}.00</p>
+        <div className='flex items-center gap-[16px] mt-[6px]'>
+          <p className='text-[18px] font-bold leading-[16px] text-[#46A358]'>${item.cost}.00</p>
+          <p className='text-[20px] leading-[6px] text-[#A5A5A5] font-medium line-through'>${item.discount}.00</p>
+        </div>
     </div>
   )
 }

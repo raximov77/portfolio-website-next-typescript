@@ -105,32 +105,22 @@ export default function Footer() {
           <div className=''>
             <h4 className="text-[18px] font-bold leading-[18px] text-[#3D3D3D] mb-[20px]">Social Media</h4>
             <div className='flex items-center gap-[10px]'>
-            <div className='border border-[#46A358]/60 px-3 py-2 rounded-md'>
-              <a href="https://www.facebook.com/" target='_blank'>
-                <FacebookIcon/>
+              <a href="https://www.facebook.com/" target='_blank' className='border border-[#46A358]/60 px-3 py-2 rounded-md cursor-pointer'>
+                <FacebookIcon />
               </a>
-            </div>
-            <div className='border border-[#46A358]/60 px-2 py-2 rounded-md'>
-              <a href="https://www.instagram.com/" target='_blank'>
-                <InstaIcon/>
+              <a href="https://www.instagram.com/" target='_blank' className='border border-[#46A358]/60 px-2 py-2 rounded-md cursor-pointer'>
+                <InstaIcon />
               </a>
-            </div>
-            <div className='border border-[#46A358]/60 px-2 py-2 rounded-md'>
-              <a href="https://x.com/?lang=ru" target='_blank'>
-                <TwitIcon/>
+              <a href="https://x.com/?lang=ru" target='_blank' className='border border-[#46A358]/60 px-2 py-2 rounded-md cursor-pointer'>
+                <TwitIcon />
               </a>
-            </div>
-            <div className='border border-[#46A358]/60 px-2 py-2 rounded-md'>
-              <a href="https://uz.linkedin.com/" target='_blank'>
-                <LinklnIcon/>
+              <a href="https://uz.linkedin.com/" target='_blank' className='border border-[#46A358]/60 px-2 py-2 rounded-md cursor-pointer'>
+                <LinklnIcon />
               </a>
-            </div>
-            <div className='border border-[#46A358]/60 px-2 py-2 rounded-md'>
-              <a href="https://www.youtube.com/" target='_blank'>
-                <YoutubeIcon/>
+              <a href="https://www.youtube.com/" target='_blank' className='border border-[#46A358]/60 px-2 py-2 rounded-md cursor-pointer'>
+                <YoutubeIcon />
               </a>
-            </div>
-            </div>
+          </div>
             <div className='mt-[33px]'>
               <span className='text-[18px] font-bold leading-[16px] text-[#3D3D3D]'>We accept</span>
               <div className='flex items-center gap-4'>

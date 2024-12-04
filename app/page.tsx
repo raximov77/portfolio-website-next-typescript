@@ -55,9 +55,9 @@ const page:React.FC<ButtonType> = () => {
               <li
                 key={index}
                 onClick={() => handleTagClick(item.path)}
-                className={`text-[17px] text-[#3D3D3D] mb-[38px] font-normal leading-[16px] cursor-pointer ${selectedTag === item.path 
+                className={`text-[17px] text-[#3D3D3D] font-normal leading-[16px] cursor-pointer ${selectedTag === item.path 
                   ? "border-b-[2px] pb-[7px] border-[#46A358] text-[#46A358]" : "border-b-[2px] pb-[7px] border-transparent text-gray-700"}`}> {item.tagName}</li>))}
-                </ul>
+            </ul>
               <Product />
           </div>
       </div>

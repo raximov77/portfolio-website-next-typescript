@@ -13,3 +13,25 @@ button:hover {
     margin: 0 auto;
   }
   
+.ant-pagination-item-active {
+  background-color: #46A358 !important;
+  border-color: #46A358 !important;
+}
+
+.ant-pagination-item-active a {
+  color: white !important;
+}
+
+
+.input-range__track .input-range__track--active {
+  background-color: #46A358!important;
+}
+
+.input-range__slider {
+  background-color: #46A358 !important;
+}
+
+.input-range__track {
+  background-color: #D7E9DA !important;
+}
+

@@ -19,7 +19,7 @@ type Range = {min:number, max:number}
 const Categories = () => {
     const {setCategory, setMinPrice, setMaxPrice} = useContext(Context)
     const [rangeValue, setRangeValue] = useState<Range>({min:15, max:500})
-    const [activeCategory, setActiveCategory] = useState<string>(''); // Track active category
+    const [activeCategory, setActiveCategory] = useState<string>('');
 
     const {data:categories = []}:any = useQuery({
         queryKey:['categories'],
@@ -45,7 +45,7 @@ const Categories = () => {
 
     const handleCategoryClick = (categoryName: string) => {
         setCategory(categoryName);
-        setActiveCategory(categoryName); // Set active category
+        setActiveCategory(categoryName);
       };
    
   return (
