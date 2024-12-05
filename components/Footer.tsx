@@ -10,22 +10,22 @@ import { EmailIcon, FacebookIcon, InstaIcon, LinklnIcon, LocationIcon, TelIcon, 
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FBFBFB] mt-[100px]">
+    <footer className="bg-[#FBFBFB]">
       <div className="container mx-auto">
         <div className="flex justify-between px-[23px] py-[25px]">
           <div className='flex items-center gap-5'>
             <div className='w-[230px] pl-9'>
-                <Image className='cursor-pointer' src={Garden} alt="Garden Care" width={115} height={70} />
+                <Image priority style={{width:"115px", height:"70px"}} className='cursor-pointer' src={Garden} alt="Garden Care"/>
                 <h3 className="text-[17px] font-bold mt-4 leading-[16px] text-[#3D3D3D]">Garden Care</h3>
                 <p className="text-[14px] font-normal mt-2 leading-[22px]">We are an online plant shop offering a wide range of cheap and trendy plants.</p>
             </div>
             <div className='w-[230px] border-l border-[#46A3581A] pl-9'>
-                <Image className='cursor-pointer' src={Plant} alt="Plant Renovation" width={115} height={70}  />
+                <Image priority style={{width:"115px", height:"70px"}} className='cursor-pointer' src={Plant} alt="Plant Renovation"/>
                 <h3 className="text-[17px] font-bold mt-7 leading-[16px] text-[#3D3D3D]">Plant Renovation</h3>
                 <p className="text-[14px] font-normal mt-2 leading-[22px]">We are an online plant shop offering a wide range of cheap and trendy plants.</p>
             </div>
             <div className='w-[230px] border-l border-[#46A3581A] pl-9'>
-                <Image className='cursor-pointer' src={Watering} alt="Watering Garden" width={115} height={70}  />
+                <Image priority style={{width:"115px", height:"70px"}} className='cursor-pointer' src={Watering} alt="Watering Garden"/>
                 <h3 className="text-[17px] font-bold mt-7 leading-[16px] text-[#3D3D3D]">Watering Garden</h3>
                 <p className="text-[14px] font-normal mt-2 leading-[22px]">We are an online plant shop offering a wide range of cheap and trendy plants.</p>
             </div>
@@ -52,7 +52,7 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-[87px] bg-[#46A358]/10 border-b-[#D7E9DA] border-[2px] px-[23px] py-[22px]">
-            <Image className='cursor-pointer' src={"/Logo.svg"} alt='Logo Img' width={150} height={34}/>
+            <Image priority style={{width:"150px", height:"34px"}} className='cursor-pointer' src={"/Logo.svg"} alt='Logo Img' width={150} height={34}/>
             <div className="flex items-center gap-[60px]">
               <button className='flex items-center gap-[9px]'>
                   <LocationIcon/>
@@ -125,16 +125,16 @@ export default function Footer() {
               <span className='text-[18px] font-bold leading-[16px] text-[#3D3D3D]'>We accept</span>
               <div className='flex items-center gap-4'>
                 <a href="https://www.paypal.com/ru/home" target='_blank'>
-                  <Image className='cursor-pointer' src={Paypal} alt='Icon' width={50} height={50}/>
+                  <Image priority style={{width:"50px", height:"50px"}} className='cursor-pointer' src={Paypal} alt='Icon' />
                 </a>
                 <a href="https://www.mastercard.uz/ru-uz.html" target='_blank'>
-                  <Image className='cursor-pointer' src={Mastercard} alt='Icon' width={50} height={50}/>
+                  <Image priority style={{width:"50px", height:"50px"}} className='cursor-pointer' src={Mastercard} alt='Icon' />
                 </a>
                 <a href="https://cis.visa.com/" target='_blank'>
-                  <Image className='cursor-pointer' src={Visa} alt='Icon' width={50} height={50}/>
+                  <Image priority style={{width:"50px", height:"50px"}} className='cursor-pointer' src={Visa} alt='Icon'/>
                 </a>
                 <a href="https://www.americanexpress.com/" target='_blank'>
-                  <Image className='cursor-pointer' src={AmericanExpress} alt='Icon' width={50} height={50}/>
+                  <Image  priority style={{width:"50px", height:"50px"}}className='cursor-pointer' src={AmericanExpress} alt='Icon' />
                 </a>
               </div>
             </div>

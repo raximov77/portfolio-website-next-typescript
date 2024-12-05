@@ -2,7 +2,7 @@
 import Footer from '@/components/Footer';
 import { useAxios } from '@/hook/useAxios';
 import { EmailIcon0, FacebookIcon0, LikeIcon, LinklnIcon0, SearchIcon, TwitIcon0} from '@/public/images/icon';
-import { ProductType } from '@/service/Product';
+import Product, { ProductType } from '@/service/Product';
 import { useQuery } from '@tanstack/react-query';
 import { Rate } from 'antd';
 import { useParams } from 'next/navigation';
@@ -12,6 +12,7 @@ const SinglePage:React.FC<{item:ProductType}> = ({item}) => {
   const { id } = useParams();
   const [value, setValue] = useState(3);
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   const { data: SingleData = {} } = useQuery({
     queryKey: ['single-product', id],
@@ -24,7 +25,6 @@ const SinglePage:React.FC<{item:ProductType}> = ({item}) => {
   console.log(SingleData);
 
   const images = SingleData.image_url || [];
-  const sizes = SingleData.size || [];
 
   const handleChange = (value: number) => {
     setValue(value);
@@ -40,6 +40,12 @@ const SinglePage:React.FC<{item:ProductType}> = ({item}) => {
 
   const handleAddToCart = () => {
     console.log('Adding to cart:', { id, quantity });
+  };
+
+  const sizes = ['S', 'M', 'L', 'XL']; 
+
+  const handleSizeClick = (size: string) => {
+    setSelectedSize(size);
   };
 
   return (
@@ -93,11 +99,19 @@ const SinglePage:React.FC<{item:ProductType}> = ({item}) => {
         <p className='text-[14px] leading-[24px] text-[#727272] font-normal mb-[24px]'>{SingleData.product_description}</p>
         <div>
           <h4 className='text-[15px] text-[#3D3D3D] leading-[16px] font-medium mb-[11px]'>Size:</h4>
-            <ul className='flex gap-[10px]'>{sizes.map((size: string, index: number) => (
-              <li className="border-[2px] border-[#727272]/60 rounded-full w-[28px] h-[28px]  flex items-center justify-center text-[14px] font-medium leading-[16px]"
-              key={index}> {size[0]}
-              </li>))}
-            </ul>
+          <ul className='flex gap-[10px]'>
+            {sizes.map((size, index) => (
+              <li
+                key={index}
+                onClick={() => handleSizeClick(size)}
+                className={`border-[2px] rounded-full w-[28px] h-[28px] flex items-center justify-center text-[14px] font-medium leading-[16px] cursor-pointer 
+                  ${selectedSize === size ? 'border-[#46A358] bg-white text-[#46A358]' : 'border-[#727272]/60'}
+                `}
+              >
+                {size}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="flex items-center gap-4 mt-[23px]">
           <button onClick={decrementQuantity} className="bg-[#46A358] text-white border px-3 py-1 rounded-full text-lg">
@@ -168,13 +182,15 @@ const SinglePage:React.FC<{item:ProductType}> = ({item}) => {
         <div className='mt-[127px]'>
             <h4 className='text-[17px] leading-[16px] font-bold text-[#46A358] border-[#46A358]/30 border-b-[2px] pb-[12px]'>Releted Products</h4>
             <div>
-           {/* There carusel */}
+              <div>
+                <Product/>
+              </div>
             </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className='pt-[128px]'>
+      <div className='pt-[70px]'>
         <Footer/>
       </div>
     </>

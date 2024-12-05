@@ -26,7 +26,7 @@ const Product = () => {
     const { category, tags, minPrice, maxPrice } = useContext(Context)
     const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setPageSize] = useState(9)
-    const [sortBy, setSortBy] = useState<string>('default') // Add state for sorting option
+    const [sortBy, setSortBy] = useState<string>('default') 
 
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products', category, tags, minPrice, maxPrice, currentPage, pageSize],
@@ -91,7 +91,7 @@ const Product = () => {
             pageSize={pageSize}
             total={35}
             onChange={handlePageChange}
-            style={{ marginTop: "110px", textAlign: "center" }}
+            style={{ marginTop: "70px", textAlign: "center" }}
         />
     </div>
     )
