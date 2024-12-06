@@ -77,7 +77,7 @@ const Categories = () => {
                 onClick={handleFilterClick}
                 title="Filter"
                 type="button"
-                extraClass="text-[16px] font-bold py-[9px] leading-[20px] px-[26px] flex items-center justify-center mt-7"
+                extraClass="text-[16px] font-bold py-[9px] leading-[20px] p-5 px-[26px] flex items-center justify-center mt-7"
             />   
         </div>
         &nbsp;

@@ -15,17 +15,17 @@ export default function Footer() {
         <div className="flex justify-between px-[23px] py-[25px]">
           <div className='flex items-center gap-5'>
             <div className='w-[230px] pl-9'>
-                <Image priority style={{width:"115px", height:"70px"}} className='cursor-pointer' src={Garden} alt="Garden Care"/>
+                <Image priority style={{width:"115px", height:"120px"}} className='cursor-pointer' src={Garden} alt="Garden Care"/>
                 <h3 className="text-[17px] font-bold mt-4 leading-[16px] text-[#3D3D3D]">Garden Care</h3>
                 <p className="text-[14px] font-normal mt-2 leading-[22px]">We are an online plant shop offering a wide range of cheap and trendy plants.</p>
             </div>
             <div className='w-[230px] border-l border-[#46A3581A] pl-9'>
-                <Image priority style={{width:"115px", height:"70px"}} className='cursor-pointer' src={Plant} alt="Plant Renovation"/>
+                <Image priority style={{width:"115px", height:"120px"}} className='cursor-pointer' src={Plant} alt="Plant Renovation"/>
                 <h3 className="text-[17px] font-bold mt-7 leading-[16px] text-[#3D3D3D]">Plant Renovation</h3>
                 <p className="text-[14px] font-normal mt-2 leading-[22px]">We are an online plant shop offering a wide range of cheap and trendy plants.</p>
             </div>
             <div className='w-[230px] border-l border-[#46A3581A] pl-9'>
-                <Image priority style={{width:"115px", height:"70px"}} className='cursor-pointer' src={Watering} alt="Watering Garden"/>
+                <Image priority style={{width:"115px", height:"120px"}} className='cursor-pointer' src={Watering} alt="Watering Garden"/>
                 <h3 className="text-[17px] font-bold mt-7 leading-[16px] text-[#3D3D3D]">Watering Garden</h3>
                 <p className="text-[14px] font-normal mt-2 leading-[22px]">We are an online plant shop offering a wide range of cheap and trendy plants.</p>
             </div>
